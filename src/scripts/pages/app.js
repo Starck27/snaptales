@@ -5,7 +5,7 @@ import {
   generateUnauthenticatedNavigationListTemplate,
 } from "../template";
 import { setupSkipToContent, transitionHelper } from "../utils";
-import { getAccessToken, getLogout } from "../utils/auth";
+import { getToken, getLogout } from "../utils/auth";
 
 class App {
   #content = null;
@@ -50,7 +50,7 @@ class App {
   }
 
   #setupNavigationList() {
-    const isLogin = !!getAccessToken();
+    const isLogin = !!getToken();
     const navList = this.#navigationDrawer.children.namedItem("navlist");
 
     if (!isLogin) {

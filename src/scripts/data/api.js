@@ -1,5 +1,5 @@
 import CONFIG from "../config";
-import { getAccessToken } from "../utils/auth";
+import { getToken } from "../utils/auth";
 
 const ENDPOINTS = {
   // Auth
@@ -60,15 +60,15 @@ export async function getLogin({ email, password }) {
 }
 
 export async function getAllStories() {
-  const accessToken = getAccessToken();
+  const token = getToken();
 
   try {
     const fetchResponse = await fetch(ENDPOINTS.STORY_LIST, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     if (fetchResponse.status === 401) {
-      removeAccessToken();
+      removetoken();
       location.hash = "/login";
 
       return { error: true, message: "Unauthorized", ok: false };
@@ -87,15 +87,15 @@ export async function getAllStories() {
 }
 
 export async function getStoryById(id) {
-  const accessToken = getAccessToken();
+  const token = getToken();
 
   try {
     const fetchResponse = await fetch(ENDPOINTS.STORY_DETAIL(id), {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     if (fetchResponse.status === 401) {
-      removeAccessToken();
+      removetoken();
       location.hash = "/login";
       return { error: true, message: "Unauthorized", ok: false };
     }
@@ -114,7 +114,7 @@ export async function getStoryById(id) {
 }
 
 export async function storeNewStory({ description, photo, lat, lon }) {
-  const accessToken = getAccessToken();
+  const token = getToken();
 
   try {
     const formData = new FormData();
@@ -132,13 +132,13 @@ export async function storeNewStory({ description, photo, lat, lon }) {
     const fetchResponse = await fetch(ENDPOINTS.STORE_NEW_STORY, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
 
     if (fetchResponse.status === 401) {
-      removeAccessToken();
+      removetoken();
       location.hash = "/login";
       return { error: true, message: "Unauthorized", ok: false };
     }
@@ -188,7 +188,7 @@ export async function subscribePushNotification({
   endpoint,
   keys: { p256dh, auth },
 }) {
-  const accessToken = getAccessToken();
+  const token = getToken();
   const data = JSON.stringify({
     endpoint,
     keys: { p256dh, auth },
@@ -198,7 +198,7 @@ export async function subscribePushNotification({
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
     body: data,
   });
@@ -212,7 +212,7 @@ export async function subscribePushNotification({
 }
 
 export async function unsubscribePushNotification({ endpoint }) {
-  const accessToken = getAccessToken();
+  const token = getToken();
   const data = JSON.stringify({
     endpoint,
   });
@@ -221,7 +221,7 @@ export async function unsubscribePushNotification({ endpoint }) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: `Bearer ${token}`,
     },
     body: data,
   });

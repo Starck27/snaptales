@@ -12,12 +12,12 @@ export default class RegisterPage {
             <form id="register-form">
                 <div class="form-control">
                     <label for="name">Nama Lengkap</label>
-                    <input type="name" name="" id="" placeholder="John Doe" />
+                    <input type="name" name="" id="name-input" placeholder="John Doe" />
                 </div>
 
                 <div class="form-control">
                     <label for="email">Email</label>
-                    <input type="email" name="" id="" placeholder="nama@contoh.com" />
+                    <input type="email" name="" id="email-input" placeholder="nama@contoh.com" />
                 </div>
 
                 <div class="form-control">
@@ -25,7 +25,7 @@ export default class RegisterPage {
                     <input
                         type="password"
                         name=""
-                        id=""
+                        id="password-input"
                         minlength="8"
                         placeholder="Masukkan password"
                         />

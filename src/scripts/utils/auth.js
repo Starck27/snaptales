@@ -1,35 +1,35 @@
 import { getActiveRoute } from "../routes/url-parser";
 import CONFIG from "../config";
 
-export function getAccessToken() {
+export function getToken() {
   try {
-    const accessToken = localStorage.getItem(CONFIG.ACCESS_TOKEN_KEY);
+    const token = localStorage.getItem(CONFIG.ACCESS_TOKEN_KEY);
 
-    if (accessToken === "null" || accessToken === "undefined") {
+    if (token === "null" || token === "undefined") {
       return null;
     }
 
-    return accessToken;
+    return token;
   } catch (error) {
-    console.error("getAccessToken: error:", error);
+    console.error("token: error:", error);
 
     return null;
   }
 }
 
-export function putAccessToken(token) {
+export function putToken(token) {
   try {
     localStorage.setItem(CONFIG.ACCESS_TOKEN_KEY, token);
 
     return true;
   } catch (error) {
-    console.error("putAccessToken: error:", error);
+    console.error("putToken: error:", error);
 
     return false;
   }
 }
 
-export function removeAccessToken() {
+export function removeToken() {
   try {
     localStorage.removeItem(CONFIG.ACCESS_TOKEN_KEY);
 
@@ -45,7 +45,7 @@ const unauthenticatedRoutesOnly = ["/login", "/register"];
 
 export function checkUnauthenticatedRouteOnly(page) {
   const url = getActiveRoute();
-  const isLogin = !!getAccessToken();
+  const isLogin = !!getToken();
 
   if (unauthenticatedRoutesOnly.includes(url) && isLogin) {
     location.hash = "/";
@@ -56,7 +56,7 @@ export function checkUnauthenticatedRouteOnly(page) {
 }
 
 export function checkAuthenticatedRoute(page) {
-  const isLogin = !!getAccessToken();
+  const isLogin = !!getToken();
 
   if (!isLogin) {
     location.hash = "/login";
@@ -67,5 +67,5 @@ export function checkAuthenticatedRoute(page) {
 }
 
 export function getLogout() {
-  removeAccessToken();
+  removeToken();
 }
