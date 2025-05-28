@@ -1,7 +1,11 @@
 import routes from "../routes/routes";
 import { getActiveRoute } from "../routes/url-parser";
-import { generateAuthenticatedNavigationListTemplate } from "../template";
+import {
+  generateAuthenticatedNavigationListTemplate,
+  generateUnauthenticatedNavigationListTemplate,
+} from "../template";
 import { setupSkipToContent, transitionHelper } from "../utils";
+import { getAccessToken, getLogout } from "../utils/auth";
 
 class App {
   #content = null;
@@ -46,14 +50,37 @@ class App {
   }
 
   #setupNavigationList() {
+    const isLogin = !!getAccessToken();
     const navList = this.#navigationDrawer.children.namedItem("navlist");
 
+    if (!isLogin) {
+      navList.innerHTML = "";
+      navList.innerHTML = generateUnauthenticatedNavigationListTemplate();
+
+      return;
+    }
+
     navList.innerHTML = generateAuthenticatedNavigationListTemplate();
+
+    const logoutButton = document.getElementById("logout-button");
+    logoutButton.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (confirm("Apakah Anda yakin ingin keluar?")) {
+        getLogout();
+
+        // Redirect
+        location.hash = "/login";
+      }
+    });
   }
 
   async renderPage() {
     const url = getActiveRoute();
-    const page = routes[url];
+    const route = routes[url];
+
+    // Get page instance
+    const page = route();
 
     const transition = transitionHelper({
       updateDOM: async () => {
