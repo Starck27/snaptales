@@ -69,13 +69,13 @@ export function generateStoryDetailErrorTemplate(message) {
 export function generateStoryItemTemplate({
   id,
   storyTeller,
-  storyImage,
+  photoUrl,
   createdAt,
   location,
 }) {
   return `
     <div tabindex="0" class="story-item" data-storyid="${id}">
-        <img class="story-item__image" src="${storyImage}" alt="${storyTeller}">
+        <img class="story-item__image" src="${photoUrl}" alt="${storyTeller}">
         <div class="story-info">
             <h2 class="story-username">${storyTeller}</h2>
             <p class="story-place">
@@ -108,12 +108,12 @@ export function generateStoryDetailImageTemplate(imageUrl = null, alt = "") {
 export function generateStoryDetailTemplate({
   storyTeller,
   description,
-  storyImage,
+  photoUrl,
   createdAt,
   location,
 }) {
   const createdAtFormatted = showFormattedDate(createdAt, "id-ID");
-  const image = generateStoryDetailImageTemplate(storyImage, storyTeller);
+  const image = generateStoryDetailImageTemplate(photoUrl, storyTeller);
 
   return `
     <div class="story-detail-container">

@@ -1,5 +1,5 @@
 import RegisterPresenter from "./register-presenter";
-import * as SnapeTalesAPI from "../../../data/api";
+import * as SnapTalesAPI from "../../../data/api";
 
 export default class RegisterPage {
   #presenter = null;
@@ -46,7 +46,7 @@ export default class RegisterPage {
   async afterRender() {
     this.#presenter = new RegisterPresenter({
       view: this,
-      model: SnapeTalesAPI,
+      model: SnapTalesAPI,
     });
 
     this.#setupForm();
