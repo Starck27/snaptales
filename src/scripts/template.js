@@ -71,7 +71,7 @@ export function generateStoryItemTemplate({
   storyTeller,
   photoUrl,
   createdAt,
-  location,
+  placeName,
 }) {
   return `
     <div tabindex="0" class="story-item" data-storyid="${id}">
@@ -79,7 +79,7 @@ export function generateStoryItemTemplate({
         <div class="story-info">
             <h2 class="story-username">${storyTeller}</h2>
             <p class="story-place">
-                <i class="fas fa-map-marker-alt"></i> ${location.placeName}
+                <i class="fas fa-map-marker-alt"></i> ${placeName}
             </p>
             <p class="story-date">
                 <i class="fas fa-calendar-alt"></i> ${showFormattedDate(
@@ -110,7 +110,8 @@ export function generateStoryDetailTemplate({
   description,
   photoUrl,
   createdAt,
-  location,
+  lat,
+  lon,
 }) {
   const createdAtFormatted = showFormattedDate(createdAt, "id-ID");
   const image = generateStoryDetailImageTemplate(photoUrl, storyTeller);
@@ -132,13 +133,13 @@ export function generateStoryDetailTemplate({
             </p>
 
             <div class="story-info-inline">
-              <p id="story-location">${location.placeName}</p>
+              <p id="story-location">${placeName}</p>
               <p id="story-date-create">${createdAtFormatted}</p>
             </div>
 
             <div class="story-coordinate-inline">
-              <p id="longitude">Longitude: <span>${location.long}</span></p>
-              <p id="latitude">Latitude: <span>${location.lat}</span></p>
+              <p id="longitude">Longitude: <span>${lon}</span></p>
+              <p id="latitude">Latitude: <span>${lat}</span></p>
             </div>
 
             <div class="story-map-container">

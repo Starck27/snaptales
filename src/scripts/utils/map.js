@@ -1,4 +1,4 @@
-import { Icon, icon, latLng, map, marker, popup, tileLayer } from "leaflet";
+import { map, tileLayer, Icon, icon, marker, popup, latLng } from "leaflet";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
@@ -13,9 +13,9 @@ export default class Map {
       const url = new URL(
         `https://api.maptiler.com/geocoding/${longitude},${latitude}.json`
       );
-      url.searchParams.set("key", CONFIG.MAP_SERVICE_API_KEY),
-        url.searchParams.set("language", "id"),
-        url.searchParams.set("limit", "1");
+      url.searchParams.set("key", CONFIG.MAP_SERVICE_API_KEY);
+      url.searchParams.set("language", "id");
+      url.searchParams.set("limit", "1");
 
       const response = await fetch(url);
       const json = await response.json();
@@ -31,7 +31,7 @@ export default class Map {
   }
 
   static isGeolocationAvailable() {
-    return `geolocation` in navigator;
+    return "geolocation" in navigator;
   }
 
   static getCurrentPosition(options = {}) {
@@ -56,7 +56,7 @@ export default class Map {
       return new Map(selector, options);
     }
 
-    const jakartaCoordinate = [-2, 106.816666];
+    const jakartaCoordinate = [-6.2, 106.816666];
 
     // Using Geolocation API
     if ("locate" in options && options.locate) {
@@ -100,7 +100,7 @@ export default class Map {
 
     this.#map = map(document.querySelector(selector), {
       zoom: this.#zoom,
-      scrollWheelZoom: true,
+      scrollWheelZoom: false,
       layers: [tileOsm],
       ...options,
     });
@@ -151,7 +151,7 @@ export default class Map {
       }
 
       if (!("content" in popupOptions)) {
-        throw new Error("popupOptions must include `content` property");
+        throw new Error("popupOptions must include `content` property.");
       }
 
       const newPopup = popup(coordinates, popupOptions);
@@ -164,6 +164,6 @@ export default class Map {
   }
 
   addMapEventListener(eventName, callback) {
-    this.#map.addMapEventListener(eventName, callback);
+    this.#map.addEventListener(eventName, callback);
   }
 }
