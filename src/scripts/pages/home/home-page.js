@@ -16,7 +16,7 @@ export default class HomePage {
     return `
       <section>
         <div class="stories-list__map-container">
-          <div id="map" class="main-map"></div>
+          <div id="map" class="stories-list__map"></div>
           <div id="map-loading-container"></div>
         </div>
       </section>

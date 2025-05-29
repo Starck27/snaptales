@@ -71,23 +71,40 @@ export function generateStoryItemTemplate({
   storyTeller,
   photoUrl,
   createdAt,
+  lat,
+  lon,
   placeName,
 }) {
+  const placeInfo =
+    lat != null && lon != null
+      ? `
+      <p class="story-item__place">
+        <abbr title="${lat}, ${lon}" class="story-item-place__tooltip">
+          <i class="fas fa-map-marker-alt"></i> ${placeName}
+        </abbr>  
+      </p>
+    `
+      : `<p class="story-item__place empty">
+        <abbr title="" class="story-item-place__tooltip">
+          <i class="fas fa-map-marker-alt"></i> Tidak ada lokasi
+        </abbr>  
+      </p>`;
+
   return `
     <div tabindex="0" class="story-item" data-storyid="${id}">
         <img class="story-item__image" src="${photoUrl}" alt="${storyTeller}">
-        <div class="story-info">
-            <h2 class="story-username">${storyTeller}</h2>
-            <p class="story-place">
-                <i class="fas fa-map-marker-alt"></i> ${placeName}
+        <div class="story-item__info">
+            <h2 class="story-item__username">${storyTeller}</h2>
+            ${placeInfo}
+            <p class="story-item__date">
+              <i class="fas fa-calendar-alt"></i> ${showFormattedDate(
+                createdAt,
+                "id-ID"
+              )}
             </p>
-            <p class="story-date">
-                <i class="fas fa-calendar-alt"></i> ${showFormattedDate(
-                  createdAt,
-                  "id-ID"
-                )}
-            </p>
-            <a href="#/story/${id}" class="btn">Selengkapnya</a>
+        </div>
+        <div class="story-item__button-container">
+          <a href="#/story/${id}" class="story-item__button">Selengkapnya</a>
         </div>
     </div>
   `;
