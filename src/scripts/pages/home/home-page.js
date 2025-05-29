@@ -49,15 +49,13 @@ export default class HomePage {
     }
 
     const html = stories.reduce((accumulator, story) => {
-      if (this.#map) {
+      if (this.#map && story?.lat && story?.lon) {
         const coordinate = [story.lat, story.lon];
         const markerOptions = { alt: story.id };
         const popupOptions = { content: story.name };
 
         this.#map.addMarker(coordinate, markerOptions, popupOptions);
       }
-
-      console.log(story);
 
       return accumulator.concat(
         generateStoryItemTemplate({
