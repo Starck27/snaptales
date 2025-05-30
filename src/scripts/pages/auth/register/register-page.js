@@ -32,9 +32,7 @@ export default class RegisterPage {
 
           <div class="form-buttons">
             <div id="submit-button-container">
-              <button class="btn" type="submit">
-                <i class="fas fa-spinner loader-button"></i> Daftar akun
-              </button>
+              <button class="btn" type="submit">Daftar akun</button>
             </div>
             <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Masuk</a></p>
           </div>
