@@ -7,38 +7,39 @@ export default class RegisterPage {
   async render() {
     return `
     <section>
-        <div class="form-container">
-            <h1>Registrasi Akun</h1>
-            <form id="register-form">
-                <div class="form-control">
-                    <label for="name">Nama Lengkap</label>
-                    <input type="name" name="" id="name-input" placeholder="John Doe" />
-                </div>
+      <div class="form-container">
+        <h1 class="register-form__title">Registrasi Akun</h1>
+        <form id="register" class="register-form">
+          <div class="form-control">
+            <label for="name-input">Nama Lengkap</label>
+            <input type="text" name="name-input" id="name-input" placeholder="John Doe">
+          </div>
 
-                <div class="form-control">
-                    <label for="email">Email</label>
-                    <input type="email" name="" id="email-input" placeholder="nama@contoh.com" />
-                </div>
+          <div class="form-control">
+            <label for="email-input">Email</label>
+            <input type="email" name="email-input" id="email-input" placeholder="nama@contoh.com" />
+          </div>
 
-                <div class="form-control">
-                    <label for="email">Password</label>
-                    <input
-                        type="password"
-                        name=""
-                        id="password-input"
-                        minlength="8"
-                        placeholder="Masukkan password"
-                        />
-                </div>
+          <div class="form-control">
+            <label for="password-input">Password</label>
+            <input
+              type="password"
+              name="password-input"
+              id="password-input"
+              placeholder="Masukkan password Anda"
+            />
+          </div>
 
-                <div class="form-buttons register-form__form-buttons">
-                    <div id="submit-button-container">
-                        <button class="btn" type="submit">Daftar akun</button>
-                    </div>
-                    <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Masuk</a></p>
-                </div>
-            </form>
-        </div>
+          <div class="form-buttons">
+            <div id="submit-button-container">
+              <button class="btn" type="submit">
+                <i class="fas fa-spinner loader-button"></i> Daftar akun
+              </button>
+            </div>
+            <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Masuk</a></p>
+          </div>
+        </form>
+      </div>
     </section>
     `;
   }
@@ -81,7 +82,7 @@ export default class RegisterPage {
   showSubmitLoadingButton() {
     document.getElementById("submit-button-container").innerHTML = `
       <button class="btn" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Masuk
+        <i class="fas fa-spinner loader-button"></i> Daftar akun
       </button>
     `;
   }

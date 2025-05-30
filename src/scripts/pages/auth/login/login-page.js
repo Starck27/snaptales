@@ -8,32 +8,32 @@ export default class LoginPage {
   async render() {
     return `
     <section>
-        <div class="form-container">
-            <h1>Masuk Akun</h1>
-            <form id="login-form">
-                <div class="form-control">
-                    <label for="email">Email</label>
-                    <input type="email" name="" id="email-input" placeholder="nama@contoh.com" />
-                </div>
+      <div class="form-container">
+        <h1 class="login-form__title">Masuk Akun</h1>
+        <form id="login-form" class="login-form">
+          <div class="form-control">
+            <label for="email-input">Email</label>
+            <input type="email" name="email-input" id="email-input" placeholder="nama@contoh.com" />
+          </div>
 
-                <div class="form-control">
-                    <label for="email">Password</label>
-                    <input
-                        type="password"
-                        name=""
-                        id="password-input"
-                        placeholder="Masukkan password Anda"
-                        />
-                </div>
+          <div class="form-control">
+            <label for="password-input">Password</label>
+            <input
+              type="password"
+              name="password-input"
+              id="password-input"
+              placeholder="Masukkan password Anda"
+            />
+          </div>
 
-                <div class="form-buttons login-form__form-buttons">
-                    <div id="submit-button-container">
-                        <button class="btn" type="submit">Masuk</button>
-                        </div>
-                        <p class="login-form__do-not-have-account">Belum punya akun? <a href="#/register">Daftar</a></p>
-                    </div>
-            </form>
-        </div>
+          <div class="form-buttons">
+            <div id="submit-button-container">
+              <button class="btn" type="submit">Masuk</button>
+            </div>
+            <p class="login-form__do-not-have-account">Belum punya akun? <a href="#/register">Daftar</a></p>
+          </div>
+        </form>
+      </div>
     </section>
     `;
   }

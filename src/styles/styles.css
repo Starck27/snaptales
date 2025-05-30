@@ -53,6 +53,10 @@ body {
   margin: auto;
 }
 
+i.loader-button {
+  animation: l1 1s linear infinite;
+}
+
 @keyframes l1 {
   100% {
     transform: rotate(1turn);
@@ -164,8 +168,7 @@ header {
 }
 
 .logout-button,
-.login-btn,
-.register-btn {
+.btn {
   padding: 1rem 1.5rem;
   background-color: var(--color-primary-dark);
   border-radius: 10px;
@@ -179,8 +182,7 @@ header {
 }
 
 .logout-button:hover,
-.login-btn:hover,
-.register-btn:hover {
+.btn:hover {
   background-color: var(--color-hover-dark);
 }
 
@@ -203,7 +205,7 @@ header {
   background-color: var(--color-primary);
 }
 
-.stories-list-container,
+.stories-list-map-container,
 .stories-list-container {
   position: relative;
 }
@@ -291,11 +293,13 @@ header {
 .form-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-inline: auto;
+  max-width: 450px;
   gap: 1rem;
 }
 
-form {
+.login-form,
+.register-form {
   border: 1px solid var(--color-text);
   border-radius: 10px;
   padding: 1.5rem;
@@ -304,11 +308,21 @@ form {
 .form-control {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding-block: 1rem;
+}
+
+.login-form__title,
+.register-form__title {
+  text-align: center;
+}
+
+.form-control label {
+  font-weight: bold;
 }
 
 input {
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 0.8rem;
+  font-size: 1rem;
   margin-top: 0.5rem;
   border-radius: 5px;
   border: 1px solid var(--color-text);
@@ -318,18 +332,30 @@ input:focus {
   outline: 1px solid var(--color-primary-dark);
 }
 
+form .form-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .form-action span {
   font-size: 1rem;
 }
 
-.login-btn,
-.register-btn {
+.btn {
   padding: 0.8rem 1rem;
   border-radius: 5px;
 }
 
-.form-action span {
-  font-size: 1rem;
+.btn:disabled {
+  background-color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.login-form__do-not-have-account a,
+.register-form__already-have-account a {
+  text-decoration: none;
 }
 
 .story-detail-container {
