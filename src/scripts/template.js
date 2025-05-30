@@ -104,7 +104,7 @@ export function generateStoryItemTemplate({
             </p>
         </div>
         <div class="story-item__button-container">
-          <a href="#/story/${id}" class="story-item__button">Selengkapnya</a>
+          <a href="#/stories/${id}" class="story-item__button">Selengkapnya</a>
         </div>
     </div>
   `;
@@ -113,58 +113,82 @@ export function generateStoryItemTemplate({
 export function generateStoryDetailImageTemplate(imageUrl = null, alt = "") {
   if (!imageUrl) {
     return `
-      <img class="story-item__image" src="images/placeholder-image.jpg" alt="Placeholder Image">
+      <img class="story-detail__image" src="images/placeholder-image.jpg" alt="Placeholder Image">
     `;
   }
 
   return `
-    <img class="story-item__image" src="${imageUrl}" alt="${alt}">
+    <img class="story-detail__image" src="${imageUrl}" alt="${alt}">
   `;
 }
 
 export function generateStoryDetailTemplate({
   storyTeller,
   description,
-  photoUrl,
+  storyImage,
   createdAt,
+  placeName,
   lat,
   lon,
 }) {
   const createdAtFormatted = showFormattedDate(createdAt, "id-ID");
-  const image = generateStoryDetailImageTemplate(photoUrl, storyTeller);
+  const image = generateStoryDetailImageTemplate(storyImage, storyTeller);
+  const placeInfo =
+    lat != null && lon != null
+      ? `
+      <div class="story-detail__location-container">
+        <p class="story-detail__placename">
+          <i class="fas fa-map-marker-alt"></i> ${placeName}
+        </p>
+
+        <div class="story-detail__coordinate-inline">
+          <p>Latitude: <span>${lat}</span></p>
+          <p>Longitude: <span>${lon}</span></p>
+        </div>
+      </div>
+    `
+      : "";
+  const storyMap =
+    lat != null && lon != null
+      ? `
+      <div class="container">
+        <h2>Peta Lokasi</h2>
+
+        <div class="story-detail__map-container">
+          <div id="map" class="story-detail__map"></div>
+          <div id="map-loading-container"></div>
+        </div>
+      </div>
+    `
+      : "";
 
   return `
-    <div class="story-detail-container">
-        <div id="story-detail" class="story-detail">
-            <div class="story-image-container">
-                ${image}
-              />
-            </div>
+  <div class="container">
+    <div class="story-detail__image-container">
+      ${image}
+    </div>
+  </div>
 
-            <div class="story-uploader-container">
-              <h1 class="story-uploader">${storyTeller}</h1>
-            </div>
+  <div class="container">
+    <div class="story-detail__name-container">
+      <h1 class="story-detail__name">${storyTeller}</h1>
+    </div>
 
-            <p class="story-description-container">
-              ${description}
-            </p>
+    <div class="story-detail__description-container">
+      <p class="story-detail__description">
+        ${description}
+      </p>
+    </div>
 
-            <div class="story-info-inline">
-              <p id="story-location">${placeName}</p>
-              <p id="story-date-create">${createdAtFormatted}</p>
-            </div>
+    <div class="story-detail__date-container">
+      <p class="story-detail__date">
+        <i class="fas fa-calendar-alt"></i> ${createdAtFormatted}
+      </p>
+    </div>
 
-            <div class="story-coordinate-inline">
-              <p id="longitude">Longitude: <span>${lon}</span></p>
-              <p id="latitude">Latitude: <span>${lat}</span></p>
-            </div>
+    ${placeInfo}
+  </div>
 
-            <div class="story-map-container">
-              <h2>Peta Lokasi</h2>
-              <div id="map" class="story-map"></div>
-              <div id="map-loading-container"></div>
-            </div>
-          </div>
-        </div>
+  ${storyMap}
   `;
 }
