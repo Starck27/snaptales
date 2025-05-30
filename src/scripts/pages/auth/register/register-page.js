@@ -7,7 +7,7 @@ export default class RegisterPage {
   async render() {
     return `
     <section>
-      <div class="form-container">
+      <div class="register-form-container">
         <h1 class="register-form__title">Registrasi Akun</h1>
         <form id="register-form" class="register-form">
           <div class="form-control">

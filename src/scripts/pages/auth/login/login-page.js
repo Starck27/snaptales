@@ -8,7 +8,7 @@ export default class LoginPage {
   async render() {
     return `
     <section>
-      <div class="form-container">
+      <div class="login-form-container">
         <h1 class="login-form__title">Masuk Akun</h1>
         <form id="login-form" class="login-form">
           <div class="form-control">
