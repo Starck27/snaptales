@@ -98,12 +98,36 @@ export default class Map {
       }
     );
 
+    const tileMapTilerStreets = tileLayer(
+      `https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=${CONFIG.MAP_SERVICE_API_KEY}`,
+      {
+        attribution:
+          '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a>',
+      }
+    );
+
+    const tileMapTilerHybrid = tileLayer(
+      `https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=${CONFIG.MAP_SERVICE_API_KEY}`,
+      {
+        attribution:
+          '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a>',
+      }
+    );
+
     this.#map = map(document.querySelector(selector), {
       zoom: this.#zoom,
       scrollWheelZoom: false,
       layers: [tileOsm],
       ...options,
     });
+
+    const baseLayers = {
+      OpenStreetMap: tileOsm,
+      "MapTiler Streets": tileMapTilerStreets,
+      "MapTiler Hybrid": tileMapTilerHybrid,
+    };
+
+    L.control.layers(baseLayers).addTo(this.#map);
   }
 
   changeCamera(coordinate, zoomLevel = null) {
