@@ -2,7 +2,6 @@ import LoginPage from "../pages/auth/login/login-page";
 import RegisterPage from "../pages/auth/register/register-page";
 import HomePage from "../pages/home/home-page";
 import StoryDetailPage from "../pages/story-detail/story-detail-page";
-import AboutPage from "../pages/about/about-page";
 import {
   checkAuthenticatedRoute,
   checkUnauthenticatedRouteOnly,
@@ -15,7 +14,6 @@ const routes = {
   "/": () => checkAuthenticatedRoute(new HomePage()),
   "/new": () => checkAuthenticatedRoute(new NewPage()),
   "/stories/:id": () => checkAuthenticatedRoute(new StoryDetailPage()),
-  "/about": () => checkAuthenticatedRoute(new AboutPage()),
 };
 
 export default routes;

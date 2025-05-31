@@ -22,16 +22,15 @@ export function generateUnauthenticatedNavigationListTemplate() {
 
 export function generateAuthenticatedNavigationListTemplate() {
   return `
-    <li id="push-notification-tools" class="push-notification-tools"></li>
-    <li><a href="#/about">About</a></li>
-            <li>
-              <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
-            </li>
-            <li>
-              <a id="logout-button" class="logout-button" href="#/login"
-                ><i class="fas fa-sign-out-alt"></i> Logout</a
-              >
-            </li>
+  <li id="push-notification-tools" class="push-notification-tools"></li>
+  <li>
+    <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
+  </li>
+  <li>
+    <a id="logout-button" class="logout-button" href="#/login"
+  ><i class="fas fa-sign-out-alt"></i> Logout</a
+    >
+  </li>
   `;
 }
 
