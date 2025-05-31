@@ -26,7 +26,7 @@ export default class NewPresenter {
         photo: storyImage,
       };
 
-      if (lat !== undefined && lon !== undefined) {
+      if (lat !== null && lon !== null) {
         data.lat = lat;
         data.lon = lon;
       }

@@ -46,14 +46,19 @@ export default class StoryDetailPage {
       });
 
     // Map
-    await this.#presenter.showStoryDetailMap();
-    if (this.#map) {
-      const storyCoordinate = [story.lat, story.lon];
-      const markerOptions = { alt: story.id };
-      const popupOptions = { content: story.name };
+    const hasCoordinates = story.lat !== null && story.lon !== null;
 
-      this.#map.changeCamera(storyCoordinate);
-      this.#map.addMarker(storyCoordinate, markerOptions, popupOptions);
+    if (hasCoordinates) {
+      await this.#presenter.showStoryDetailMap();
+
+      if (this.#map) {
+        const storyCoordinate = [story.lat, story.lon];
+        const markerOptions = { alt: story.id };
+        const popupOptions = { content: story.name };
+
+        this.#map.changeCamera(storyCoordinate);
+        this.#map.addMarker(storyCoordinate, markerOptions, popupOptions);
+      }
     }
   }
 
@@ -78,11 +83,16 @@ export default class StoryDetailPage {
   }
 
   showMapLoading() {
-    document.getElementById("map-loading-container").innerHTML =
-      generateLoaderAbsoluteTemplate();
+    const container = document.getElementById("map-loading-container");
+    if (container) {
+      container.innerHTML = generateLoaderAbsoluteTemplate();
+    }
   }
 
   hideMapLoading() {
-    document.getElementById("map-loading-container").innerHTML = "";
+    const container = document.getElementById("map-loading-container");
+    if (container) {
+      container.innerHTML = "";
+    }
   }
 }
