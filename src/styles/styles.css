@@ -594,7 +594,7 @@ input[type="checkbox"] {
   gap: 10px;
 }
 
-.form-buttons a {
+a.btn {
   padding: 0.7rem 1rem;
   text-decoration: none;
 }
