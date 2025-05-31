@@ -25,7 +25,7 @@ export function generateAuthenticatedNavigationListTemplate() {
     <li id="push-notification-tools" class="push-notification-tools"></li>
     <li><a href="#/about">About</a></li>
             <li>
-              <a href="#">Tambah Cerita <i class="fas fa-plus"></i></a>
+              <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
             </li>
             <li>
               <a id="logout-button" class="logout-button" href="#/login"
@@ -190,5 +190,33 @@ export function generateStoryDetailTemplate({
   </div>
 
   ${storyMap}
+  `;
+}
+
+export function generateNewFormLocation() {
+  return `
+  <div class="form-control">
+    <p class="new-form__location__title">Lokasi</p>
+    <div class="new-form__location-container">
+      <div class="new-form__location-map-container">
+        <div id="map" class="new-form__location-map"></div>
+        <div id="map-loading-container"></div>
+      </div>
+    
+      <div class="new-form__location__lat-lng">
+        <input
+          type="number"
+          name="latitude"
+          disabled
+        />
+        
+        <input
+          type="number"
+          name="longitude"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
   `;
 }

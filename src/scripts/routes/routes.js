@@ -7,11 +7,13 @@ import {
   checkAuthenticatedRoute,
   checkUnauthenticatedRouteOnly,
 } from "../utils/auth";
+import NewPage from "../pages/new/new-page";
 
 const routes = {
   "/login": () => checkUnauthenticatedRouteOnly(new LoginPage()),
   "/register": () => checkUnauthenticatedRouteOnly(new RegisterPage()),
   "/": () => checkAuthenticatedRoute(new HomePage()),
+  "/new": () => checkAuthenticatedRoute(new NewPage()),
   "/stories/:id": () => checkAuthenticatedRoute(new StoryDetailPage()),
   "/about": () => checkAuthenticatedRoute(new AboutPage()),
 };
