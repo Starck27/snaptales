@@ -21,7 +21,6 @@ export default class Map {
       const json = await response.json();
 
       const place = json.features[0].place_name.split(", ");
-
       return [place.at(-2), place.at(-1)].map((name) => name).join(", ");
     } catch (error) {
       console.error("getPlaceNameByCoordinate: error:", error);

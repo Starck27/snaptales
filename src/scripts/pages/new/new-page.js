@@ -204,7 +204,7 @@ export default class NewPage {
         this.#isCameraOpen = cameraContainer.classList.contains("open");
 
         if (this.#isCameraOpen) {
-          event.currentTarget.textContent = "Tutup Kaemera";
+          event.currentTarget.textContent = "Tutup Kamera";
           this.#setupCamera();
           this.#camera.launch();
 
@@ -214,11 +214,6 @@ export default class NewPage {
         event.currentTarget.textContent = "Buka Kamera";
         this.#camera.stop();
       });
-
-    if (locationCheckbox.checked) {
-      locationContainer.innerHTML = generateNewFormLocation();
-      this.#presenter.showNewFormMap();
-    }
   }
 
   async initialMap() {
@@ -245,7 +240,7 @@ export default class NewPage {
       this.#updateLatLngInput(coordinate.lat, coordinate.lng);
     });
 
-    this.#map.addEventListener("click", (event) => {
+    this.#map.addMapEventListener("click", (event) => {
       draggableMarker.setLatLng(event.latlng);
 
       // Keep center with user view
