@@ -1,45 +1,12 @@
 import RegisterPresenter from "./register-presenter";
 import * as SnapTalesAPI from "../../../data/api";
+import template from "./register-page.html";
 
 export default class RegisterPage {
   #presenter = null;
 
   async render() {
-    return `
-    <section>
-      <div class="register-form-container">
-        <h1 class="register-form__title">Registrasi Akun</h1>
-        <form id="register-form" class="register-form">
-          <div class="form-control">
-            <label for="name-input">Nama Lengkap</label>
-            <input type="text" name="name-input" id="name-input" placeholder="John Doe">
-          </div>
-
-          <div class="form-control">
-            <label for="email-input">Email</label>
-            <input type="email" name="email-input" id="email-input" placeholder="nama@contoh.com" />
-          </div>
-
-          <div class="form-control">
-            <label for="password-input">Password</label>
-            <input
-              type="password"
-              name="password-input"
-              id="password-input"
-              placeholder="Masukkan password Anda"
-            />
-          </div>
-
-          <div class="form-buttons">
-            <div id="submit-button-container">
-              <button class="btn" type="submit">Daftar akun</button>
-            </div>
-            <p class="register-form__already-have-account">Sudah punya akun? <a href="#/login">Masuk</a></p>
-          </div>
-        </form>
-      </div>
-    </section>
-    `;
+    return template;
   }
 
   async afterRender() {
