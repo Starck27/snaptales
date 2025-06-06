@@ -7,29 +7,14 @@ import {
 import HomePresenter from "./home-presenter";
 import Map from "../../utils/map";
 import * as SnapTalesAPI from "../../data/api";
+import template from "./home-page.html";
 
 export default class HomePage {
   #presenter = null;
   #map = null;
 
   async render() {
-    return `
-      <section>
-        <div class="stories-list__map-container">
-          <div id="map" class="stories-list__map"></div>
-          <div id="map-loading-container"></div>
-        </div>
-      </section>
-
-      <section class="container">
-        <h1 class="section-title">Semua Cerita</h1>
-
-        <div class="stories-list__container">
-          <div id="stories-list" class="stories-list"></div>
-          <div id="stories-list-loading-container"></div>
-        </div>
-      </section>
-    `;
+    return template;
   }
 
   async afterRender() {
