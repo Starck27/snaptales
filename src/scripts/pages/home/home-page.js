@@ -24,8 +24,8 @@ export default class HomePage {
       <section class="container">
         <h1 class="section-title">Semua Cerita</h1>
 
-        <div class="story-list__container">
-          <div id="stories-list" class"story-list"></div>
+        <div class="stories-list__container">
+          <div id="stories-list" class="stories-list"></div>
           <div id="stories-list-loading-container"></div>
         </div>
       </section>
@@ -66,7 +66,7 @@ export default class HomePage {
     }, "");
 
     document.getElementById("stories-list").innerHTML = `
-      <div class="stories-list">${html}</div>
+      ${html}
     `;
   }
 
