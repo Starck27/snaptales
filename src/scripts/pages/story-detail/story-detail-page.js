@@ -7,6 +7,7 @@ import storyDetailPresenter from "./story-detail-presenter";
 import { parseActivePathname } from "../../routes/url-parser";
 import Map from "../../utils/map";
 import * as SnapTalesAPI from "../../data/api";
+import template from "./story-detail-page.html";
 
 export default class StoryDetailPage {
   #presenter = null;
@@ -14,14 +15,7 @@ export default class StoryDetailPage {
   #map = null;
 
   async render() {
-    return `
-    <section>
-        <div class="story-detail__container">
-            <div id="story-detail" class="story-detail"></div>
-            <div id="story-detail-loading-container"></div>
-        </div>
-    </section>
-    `;
+    return template;
   }
 
   async afterRender() {

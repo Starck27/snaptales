@@ -7,6 +7,7 @@ import { convertBase64ToBlob } from "../../utils";
 import Camera from "../../utils/camera";
 import Map from "../../utils/map";
 import NewPresenter from "./new-presenter";
+import template from "./new-page.html";
 
 export default class NewPage {
   #presenter;
@@ -17,95 +18,7 @@ export default class NewPage {
   #map = null;
 
   async render() {
-    return `
-        <section>
-            <div class="new-form__container">
-                <h1 class="new-story__title">Cerita Baru</h1>
-                <form id="new-form" class="new-form">
-                    <div class="form-control">
-                        <label for="description-input">Deskripsi Cerita</label>
-                        <textarea
-                            name="description-input"
-                            id="description-input"
-                            placeholder="Ceritakan apa yang terjadi kepadamu."
-                        ></textarea>
-                    </div>
-
-                    <div class="form-control">
-                        <label for="documentation-input">Dokumentasi Cerita</label>
-                        <div class="new-form__documentation__container">
-                            <div class="new-form__documentation__buttons">
-                                <button
-                                    id="documentation-input-button"
-                                    class="btn btn-outline"
-                                    type="button"
-                                >
-                                    Ambil Gambar
-                                </button>
-                                <input
-                                    id="documentation-input"
-                                    class="new-form__documentation__input"
-                                    name="documentation"
-                                    type="file"
-                                    accept="image/*"
-                                    aria-describedby="documentation-more-info"
-                                />
-                                <button
-                                    id="open-documentation-camera-button"
-                                    class="btn btn-outline"
-                                    type="button"
-                                >
-                                    Buka Kamera
-                                </button>
-                            </div>
-
-                            <div id="camera-container" class="new-form__camera__container">
-                                <video id="camera-video" class="new-form__camera__video">
-                                    Video stream not available.
-                                </video>
-                                <canvas
-                                    id="camera-canvas"
-                                    class="new-form__camera__canvas"
-                                ></canvas>
-
-                                <div class="new-form__camera__tools">
-                                    <select id="camera-select"></select>
-                                    <div class="new-form__camera__tools_button">
-                                        <button id="camera-take-button" class="btn" type="button">
-                                            Ambil Gambar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <ul
-                            id="documentation-taken-list"
-                            class="new-form__documentation__output"
-                            ></ul>
-                        </div>
-                    </div>
-
-                    <div class="form-control inline">
-                        <input
-                            type="checkbox"
-                            name="location-input-checkbox"
-                            id="location-input-checkbox"
-                        />
-                        <label for="location-input-checkbox">Tambah Lokasi</label>
-                    </div>
-
-                    <div id="location-input-container" class="new-form__location__input-container"></div>
-
-                    <div class="form-buttons">
-                        <span id="submit-button-container">
-                            <button class="btn" type="submit">Buat Cerita</button>
-                        </span>
-                        <a class="btn" href="#/">Batal</a>
-                    </div>
-                </form>
-            </div>
-        </section>
-    `;
+    return template;
   }
 
   async afterRender() {
