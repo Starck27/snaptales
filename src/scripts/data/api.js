@@ -14,7 +14,6 @@ const ENDPOINTS = {
 
   // Notification
   SUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
-  UNSUBSCRIBE: `${CONFIG.BASE_URL}/notifications/unsubscribe`,
 };
 
 export async function getRegistered({ name, email, password }) {
@@ -217,7 +216,7 @@ export async function unsubscribePushNotification({ endpoint }) {
     endpoint,
   });
 
-  const fetchResponse = await fetch(ENDPOINTS.UNSUBSCRIBE, {
+  const fetchResponse = await fetch(ENDPOINTS.SUBSCRIBE, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
