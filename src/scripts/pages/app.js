@@ -4,6 +4,7 @@ import {
   generateAuthenticatedNavigationListTemplate,
   generateSubscribeButtonTemplate,
   generateUnauthenticatedNavigationListTemplate,
+  generateUnsubscribeButtonTemplate,
 } from "../template";
 import {
   isServiceWorkerAvailable,
@@ -11,6 +12,10 @@ import {
   transitionHelper,
 } from "../utils";
 import { getToken, getLogout } from "../utils/auth";
+import {
+  isCurrentPushSubscriptionAvailable,
+  subscribe,
+} from "../utils/notification-helper";
 
 class App {
   #content = null;
@@ -85,12 +90,22 @@ class App {
       "push-notification-tools"
     );
 
+    const isSubscribed = await isCurrentPushSubscriptionAvailable();
+
+    if (isSubscribed) {
+      pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
+
+      return;
+    }
+
     pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
 
     document
       .getElementById("subscribe-button")
       .addEventListener("click", () => {
-        // TODO: subscribe to push manager
+        subscribe().finally(() => {
+          this.#setupPushNotification();
+        });
       });
   }
 
