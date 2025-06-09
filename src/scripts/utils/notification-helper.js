@@ -1,5 +1,9 @@
 import { convertBase64ToUint8Array } from ".";
 import CONFIG from "../config";
+import {
+  subscribePushNotification,
+  unsubscribePushNotification,
+} from "../data/api";
 
 export function isNotificationAvailable() {
   return "Notification" in window;
@@ -95,5 +99,47 @@ export async function subscribe() {
 
     // Undo subscribe to push notification
     await pushSubscription.unsubscribe();
+  }
+}
+
+export async function unsubscribe() {
+  const failureUnsubscribeMessage =
+    "Langganan push notification gagal dinonaktifkan.";
+  const successUnsubscribeMessage =
+    "Langganan push notification berhasil dinonaktifkan.";
+
+  try {
+    const pushSubscription = await getPushSubscription();
+
+    if (!pushSubscription) {
+      alert(
+        "Tidak bisa memutus langganan push notification karena belum berlangganan sebelumnya."
+      );
+      return;
+    }
+
+    const { endpoint, keys } = pushSubscription.toJSON();
+    const response = await unsubscribePushNotification({ endpoint });
+
+    if (!response.ok) {
+      alert(failureUnsubscribeMessage);
+      console.error("unsubscribe: response:", response);
+
+      return;
+    }
+
+    const unsubscribed = await pushSubscription.unsubscribe();
+
+    if (!unsubscribed) {
+      alert(failureUnsubscribeMessage);
+      await subscribePushNotification({ endpoint, keys });
+
+      return;
+    }
+
+    alert(successUnsubscribeMessage);
+  } catch (error) {
+    alert(failureUnsubscribeMessage);
+    console.error("unsubscribe: error:", error);
   }
 }

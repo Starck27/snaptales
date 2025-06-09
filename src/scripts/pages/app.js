@@ -15,6 +15,7 @@ import { getToken, getLogout } from "../utils/auth";
 import {
   isCurrentPushSubscriptionAvailable,
   subscribe,
+  unsubscribe,
 } from "../utils/notification-helper";
 
 class App {
@@ -89,17 +90,22 @@ class App {
     const pushNotificationTools = document.getElementById(
       "push-notification-tools"
     );
-
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
 
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
+      document
+        .getElementById("unsubscribe-button")
+        .addEventListener("click", () => {
+          unsubscribe().finally(() => {
+            this.#setupPushNotification();
+          });
+        });
 
       return;
     }
 
     pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
-
     document
       .getElementById("subscribe-button")
       .addEventListener("click", () => {
