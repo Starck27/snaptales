@@ -133,10 +133,18 @@ header {
 }
 
 .brand-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
   color: var(--color-muted);
+}
+
+.brand-name__image {
+  width: 35px;
 }
 
 .drawer-button {
@@ -178,7 +186,7 @@ header {
 
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .nav-list li a {
