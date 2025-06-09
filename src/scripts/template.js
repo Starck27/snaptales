@@ -22,10 +22,10 @@ export function generateUnauthenticatedNavigationListTemplate() {
 
 export function generateAuthenticatedNavigationListTemplate() {
   return `
-  <li id="push-notification-tools" class="push-notification-tools"></li>
   <li>
     <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
   </li>
+  <li id="push-notification-tools" class="push-notification-tools"></li>
   <li>
     <a id="logout-button" class="logout-button" href="#/login"
   ><i class="fas fa-sign-out-alt"></i> Logout</a
@@ -217,5 +217,21 @@ export function generateNewFormLocation() {
       </div>
     </div>
   </div>
+  `;
+}
+
+export function generateSubscribeButtonTemplate() {
+  return `
+    <button id="subscribe-button" class="subscribe-button">
+      <i class="fas fa-bell"></i>
+    </button>
+  `;
+}
+
+export function generateUnsubscribeButtonTemplate() {
+  return `
+    <button id="unsubscribe-button" class="unsubscribe-button">
+      <i class="fas fa-bell-slash"></i>
+    </button>
   `;
 }

@@ -205,6 +205,8 @@ select {
 }
 
 .logout-button,
+.subscribe-button,
+.unsubscribe-button,
 .btn {
   padding: 1rem 1.5rem;
   background-color: var(--color-primary-dark);
@@ -219,6 +221,8 @@ select {
 }
 
 .logout-button:hover,
+.subscribe-button:hover,
+.unsubscribe-button:hover,
 .btn:hover {
   background-color: var(--color-hover-dark);
 }
