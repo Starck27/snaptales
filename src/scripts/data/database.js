@@ -28,6 +28,10 @@ const Database = {
 
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
+
+  async getAllStories() {
+    return (await dbPromise).getAll(OBJECT_STORE_NAME);
+  },
 };
 
 export default Database;
