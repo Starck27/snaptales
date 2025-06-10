@@ -7,6 +7,7 @@ import {
   checkUnauthenticatedRouteOnly,
 } from "../utils/auth";
 import NewPage from "../pages/new/new-page";
+import FavoritePage from "../pages/favorite/favorite-page";
 
 const routes = {
   "/login": () => checkUnauthenticatedRouteOnly(new LoginPage()),
@@ -14,6 +15,7 @@ const routes = {
   "/": () => checkAuthenticatedRoute(new HomePage()),
   "/new": () => checkAuthenticatedRoute(new NewPage()),
   "/stories/:id": () => checkAuthenticatedRoute(new StoryDetailPage()),
+  "/favorite": () => checkAuthenticatedRoute(new FavoritePage()),
 };
 
 export default routes;

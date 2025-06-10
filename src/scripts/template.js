@@ -23,7 +23,7 @@ export function generateUnauthenticatedNavigationListTemplate() {
 export function generateAuthenticatedNavigationListTemplate() {
   return `
   <li>
-    <a href="#/">Cerita Favorit</a>
+    <a href="#/favorite">Cerita Favorit</a>
   </li>
   <li>
     <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
