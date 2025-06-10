@@ -14,7 +14,6 @@ import Database from "../../data/database";
 
 export default class StoryDetailPage {
   #presenter = null;
-  #form = null;
   #map = null;
 
   async render() {
@@ -81,6 +80,7 @@ export default class StoryDetailPage {
       .getElementById("story-detail-favorite")
       .addEventListener("click", async () => {
         await this.#presenter.favorStory();
+        await this.#presenter.showFavoriteButton();
       });
   }
 

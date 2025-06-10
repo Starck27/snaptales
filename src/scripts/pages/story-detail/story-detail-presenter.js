@@ -50,7 +50,7 @@ export default class storyDetailPresenter {
   async favorStory() {
     try {
       const story = await this.#apiModel.getStoryById(this.#storyId);
-      await this.#dbModel.putStory(story.data);
+      await this.#dbModel.putStory(story.story);
 
       this.#view.addToFavoriteSuccessfully("Success to favorite the story");
     } catch (error) {
@@ -69,7 +69,7 @@ export default class storyDetailPresenter {
     this.#view.renderFavoriteButton();
   }
 
-  #isStoryFavorited() {
-    return false;
+  async #isStoryFavorited() {
+    return !!(await this.#dbModel.getStoryById(this.#storyId));
   }
 }
