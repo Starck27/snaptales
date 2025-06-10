@@ -23,6 +23,9 @@ export function generateUnauthenticatedNavigationListTemplate() {
 export function generateAuthenticatedNavigationListTemplate() {
   return `
   <li>
+    <a href="#/">Cerita Favorit</a>
+  </li>
+  <li>
     <a href="#/new">Tambah Cerita <i class="fas fa-plus"></i></a>
   </li>
   <li id="push-notification-tools" class="push-notification-tools"></li>
@@ -169,8 +172,12 @@ export function generateStoryDetailTemplate({
   </div>
 
   <div class="container">
-    <div class="story-detail__name-container">
-      <h1 class="story-detail__name">${storyTeller}</h1>
+    <div class="story-detail__header-container">
+      <div class="story-detail__name-container">
+        <h1 class="story-detail__name">${storyTeller}</h1>
+      </div>
+
+      <div id="save-action-container"></div>    
     </div>
 
     <div class="story-detail__description-container">
@@ -232,6 +239,22 @@ export function generateUnsubscribeButtonTemplate() {
   return `
     <button id="unsubscribe-button" class="unsubscribe-button">
       <i class="fas fa-bell-slash"></i>
+    </button>
+  `;
+}
+
+export function generateFavoriteStoryButtonTemplate() {
+  return `
+    <button id="story-detail-favorite" class="save-btn">
+      <i class="far fa-heart"></i>
+    </button>
+  `;
+}
+
+export function generateRemoveFavoriteStorytButtonTemplate() {
+  return `
+    <button id="story-detail-remove-favorite" class="save-btn">
+      <i class="fas fa-heart"></i>
     </button>
   `;
 }
