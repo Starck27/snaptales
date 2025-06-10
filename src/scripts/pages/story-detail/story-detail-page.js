@@ -100,8 +100,8 @@ export default class StoryDetailPage {
       .getElementById("story-detail-favorite")
       .addEventListener("click", async () => {
         alert("Fitur simpan laporan akan segera hadir!");
-        // await this.#presenter.removeStory();
-        // await this.#presenter.showFavoriteButton();
+        await this.#presenter.removeStory();
+        await this.#presenter.showFavoriteButton();
       });
   }
 

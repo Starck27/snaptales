@@ -59,6 +59,19 @@ export default class storyDetailPresenter {
     }
   }
 
+  async removeStory() {
+    try {
+      await this.#dbModel.removeStory(this.#storyId);
+
+      this.#view.removeFromFavoriteSuccessfully(
+        "Success to remove from favorite"
+      );
+    } catch (error) {
+      console.error("removeStory: error:", error);
+      this.#view.removeFromFavoriteFailed(error.message);
+    }
+  }
+
   showFavoriteButton() {
     if (this.#isStoryFavorited()) {
       this.#view.renderRemoveButton();
