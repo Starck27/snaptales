@@ -4,11 +4,13 @@ export default class storyDetailPresenter {
   #storyId;
   #view;
   #apiModel;
+  #dbModel;
 
-  constructor(storyId, { view, apiModel }) {
+  constructor(storyId, { view, apiModel, dbModel }) {
     this.#storyId = storyId;
     this.#view = view;
     this.#apiModel = apiModel;
+    this.#dbModel = dbModel;
   }
 
   async showStoryDetailMap() {
@@ -43,5 +45,31 @@ export default class storyDetailPresenter {
     } finally {
       this.#view.hideStoryDetailLoading();
     }
+  }
+
+  async favorStory() {
+    try {
+      const story = await this.#apiModel.getStoryById(this.#storyId);
+      await this.#dbModel.putStory(story.data);
+
+      this.#view.addToFavoriteSuccessfully("Success to favorite the story");
+    } catch (error) {
+      console.error("favorStory: error:", error);
+      this.#view.addToFavoriteFailed(error.message);
+    }
+  }
+
+  showFavoriteButton() {
+    if (this.#isStoryFavorited()) {
+      this.#view.renderRemoveButton();
+
+      return;
+    }
+
+    this.#view.renderFavoriteButton();
+  }
+
+  #isStoryFavorited() {
+    return false;
   }
 }

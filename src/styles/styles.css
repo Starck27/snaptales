@@ -449,13 +449,13 @@ form .form-buttons {
   justify-content: space-between;
 }
 
-.save-btn {
+.favorite-btn {
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
 
-.save-btn i {
+.favorite-btn i {
   color: var(--color-primary-dark);
   font-size: 2.5rem;
 }

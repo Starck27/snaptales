@@ -1,5 +1,7 @@
 import {
+  generateFavoriteStoryButtonTemplate,
   generateLoaderAbsoluteTemplate,
+  generateRemoveFavoriteStorytButtonTemplate,
   generateStoryDetailErrorTemplate,
   generateStoryDetailTemplate,
 } from "../../template";
@@ -8,6 +10,7 @@ import { parseActivePathname } from "../../routes/url-parser";
 import Map from "../../utils/map";
 import * as SnapTalesAPI from "../../data/api";
 import template from "./story-detail-page.html";
+import Database from "../../data/database";
 
 export default class StoryDetailPage {
   #presenter = null;
@@ -22,6 +25,7 @@ export default class StoryDetailPage {
     this.#presenter = new storyDetailPresenter(parseActivePathname().id, {
       view: this,
       apiModel: SnapTalesAPI,
+      dbModel: Database,
     });
 
     this.#presenter.showStoryDetail();
@@ -54,6 +58,8 @@ export default class StoryDetailPage {
         this.#map.addMarker(storyCoordinate, markerOptions, popupOptions);
       }
     }
+
+    this.#presenter.showFavoriteButton();
   }
 
   populateStoryDetailError(message) {
@@ -65,6 +71,46 @@ export default class StoryDetailPage {
     this.#map = await Map.build("#map", {
       zoom: 15,
     });
+  }
+
+  renderFavoriteButton() {
+    document.getElementById("favor-action-container").innerHTML =
+      generateFavoriteStoryButtonTemplate();
+
+    document
+      .getElementById("story-detail-favorite")
+      .addEventListener("click", async () => {
+        await this.#presenter.favorStory();
+      });
+  }
+
+  addToFavoriteSuccessfully(message) {
+    console.log(message);
+  }
+
+  addToFavoriteFailed(message) {
+    alert(message);
+  }
+
+  renderRemoveButton() {
+    document.getElementById("favor-action-container").innerHTML =
+      generateRemoveFavoriteStorytButtonTemplate();
+
+    document
+      .getElementById("story-detail-favorite")
+      .addEventListener("click", async () => {
+        alert("Fitur simpan laporan akan segera hadir!");
+        // await this.#presenter.removeStory();
+        // await this.#presenter.showFavoriteButton();
+      });
+  }
+
+  removeFromFavoriteSuccessfully(message) {
+    console.log(message);
+  }
+
+  removeFromFavoriteFailed(message) {
+    alert(message);
   }
 
   showStoryDetailLoading() {

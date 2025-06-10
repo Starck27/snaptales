@@ -11,3 +11,15 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
     });
   },
 });
+
+const Database = {
+  async putStory(story) {
+    if (!Object.hasOwn(story, "id")) {
+      throw new Error("`id` is required to favor.");
+    }
+
+    return (await dbPromise).put(OBJECT_STORE_NAME, story);
+  },
+};
+
+export default Database;

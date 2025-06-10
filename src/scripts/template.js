@@ -177,7 +177,7 @@ export function generateStoryDetailTemplate({
         <h1 class="story-detail__name">${storyTeller}</h1>
       </div>
 
-      <div id="save-action-container"></div>    
+      <div id="favor-action-container"></div>    
     </div>
 
     <div class="story-detail__description-container">
@@ -245,7 +245,7 @@ export function generateUnsubscribeButtonTemplate() {
 
 export function generateFavoriteStoryButtonTemplate() {
   return `
-    <button id="story-detail-favorite" class="save-btn">
+    <button id="story-detail-favorite" class="favorite-btn">
       <i class="far fa-heart"></i>
     </button>
   `;
@@ -253,7 +253,7 @@ export function generateFavoriteStoryButtonTemplate() {
 
 export function generateRemoveFavoriteStorytButtonTemplate() {
   return `
-    <button id="story-detail-remove-favorite" class="save-btn">
+    <button id="story-detail-remove-favorite" class="favorite-btn">
       <i class="fas fa-heart"></i>
     </button>
   `;
