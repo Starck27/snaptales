@@ -50,7 +50,7 @@ export default class FavoritePage {
       );
     }, "");
 
-    document.getElementById("storie-list").innerHTML = `${html}`;
+    document.getElementById("stories-list").innerHTML = `${html}`;
   }
 
   populateFavoritedStoriesListEmpty() {
@@ -58,7 +58,7 @@ export default class FavoritePage {
       generateStoriesListEmptyTemplate();
   }
 
-  populateStoriesListError(message) {
+  populateFavoritedStoriesError(message) {
     document.getElementById("stories-list").innerHTML =
       generateStoriesListErrorTemplate(message);
   }

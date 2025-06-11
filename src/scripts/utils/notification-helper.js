@@ -1,9 +1,9 @@
-import { convertBase64ToUint8Array } from ".";
-import CONFIG from "../config";
 import {
   subscribePushNotification,
   unsubscribePushNotification,
 } from "../data/api";
+import { convertBase64ToUint8Array } from ".";
+import CONFIG from "../config";
 
 export function isNotificationAvailable() {
   return "Notification" in window;
@@ -141,5 +141,17 @@ export async function unsubscribe() {
   } catch (error) {
     alert(failureUnsubscribeMessage);
     console.error("unsubscribe: error:", error);
+  }
+}
+
+export async function showLocalNotification(title, body) {
+  if (!isNotificationAvailable() || !isNotificationGranted()) return;
+
+  const isSubscribed = await isCurrentPushSubscriptionAvailable();
+  if (!isSubscribed) return;
+
+  const registration = await navigator.serviceWorker.getRegistration();
+  if (registration) {
+    registration.showNotification(title, { body });
   }
 }

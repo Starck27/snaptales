@@ -1,3 +1,5 @@
+import { showLocalNotification } from "../../utils/notification-helper";
+
 export default class NewPresenter {
   #view;
   #model;
@@ -41,6 +43,13 @@ export default class NewPresenter {
       }
 
       this.#view.storeSuccessfully(response.message, response.story);
+
+      const shortDesc =
+        description.length > 100
+          ? `${description.slice(0, 100).trim()}...`
+          : description;
+
+      showLocalNotification("Cerita Baru Ditambahkan", description);
     } catch (error) {
       console.error("postNewStory: error:", error);
       this.#view.storeFailed(error.message);

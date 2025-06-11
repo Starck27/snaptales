@@ -21,7 +21,7 @@ const Database = {
     return (await dbPromise).put(OBJECT_STORE_NAME, story);
   },
 
-  async getStorybyId(id) {
+  async getStoryById(id) {
     if (!id) {
       throw new Error("`id` is required.");
     }

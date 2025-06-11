@@ -1,4 +1,5 @@
 import { storyMapper } from "../../data/api-mapper";
+import { showLocalNotification } from "../../utils/notification-helper";
 
 export default class storyDetailPresenter {
   #storyId;
@@ -53,6 +54,12 @@ export default class storyDetailPresenter {
       await this.#dbModel.putStory(story.story);
 
       this.#view.addToFavoriteSuccessfully("Success to favorite the story");
+
+      const storedStory = await this.#dbModel.getStoryById(this.#storyId);
+      showLocalNotification(
+        "Cerita difavoritkan",
+        `Menfavoritkan cerita dari ${storedStory.name}`
+      );
     } catch (error) {
       console.error("favorStory: error:", error);
       this.#view.addToFavoriteFailed(error.message);
@@ -61,19 +68,27 @@ export default class storyDetailPresenter {
 
   async removeStory() {
     try {
+      const removedStory = await this.#dbModel.getStoryById(this.#storyId);
       await this.#dbModel.removeStory(this.#storyId);
 
       this.#view.removeFromFavoriteSuccessfully(
         "Success to remove from favorite"
       );
+
+      if (removedStory) {
+        showLocalNotification(
+          "Cerita Dihapus dari Favorit",
+          `Menghapus cerita ${removedStory.name} dari Favorit`
+        );
+      }
     } catch (error) {
       console.error("removeStory: error:", error);
       this.#view.removeFromFavoriteFailed(error.message);
     }
   }
 
-  showFavoriteButton() {
-    if (this.#isStoryFavorited()) {
+  async showFavoriteButton() {
+    if (await this.#isStoryFavorited()) {
       this.#view.renderRemoveButton();
 
       return;

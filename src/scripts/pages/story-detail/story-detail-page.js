@@ -97,9 +97,8 @@ export default class StoryDetailPage {
       generateRemoveFavoriteStorytButtonTemplate();
 
     document
-      .getElementById("story-detail-favorite")
+      .getElementById("story-detail-remove-favorite")
       .addEventListener("click", async () => {
-        alert("Fitur simpan laporan akan segera hadir!");
         await this.#presenter.removeStory();
         await this.#presenter.showFavoriteButton();
       });
