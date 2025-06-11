@@ -119,13 +119,30 @@ class App {
     const url = getActiveRoute();
     const route = routes[url];
 
-    // Get page instance
-    const page = route();
+    let page;
+    try {
+      // Get page instance
+      page = route();
+    } catch (error) {
+      console.error("Gagal memuat halaman:", error);
+      location.reload();
+
+      return;
+    }
 
     const transition = transitionHelper({
       updateDOM: async () => {
-        this.#content.innerHTML = await page.render();
-        page.afterRender();
+        try {
+          const html = await page.render();
+          if (!html || typeof html !== "string") {
+            console.error("Render page output invalid");
+          }
+          this.#content.innerHTML = html;
+          page.afterRender();
+        } catch (error) {
+          console.error("Failed to render page:", error);
+          location.reload();
+        }
       },
     });
 
