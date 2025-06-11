@@ -672,6 +672,40 @@ footer {
   color: var(--color-text);
 }
 
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 200px;
+}
+
+.not-found__back-text {
+  font-weight: 600;
+}
+
+.not-found__back-text a {
+  text-decoration: none;
+  padding: 1rem 0.5rem;
+  margin: 0.5rem;
+
+  background-color: var(--color-primary-dark);
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 10px;
+
+  border: none;
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color 150ms ease;
+}
+
+.not-found__back-text a:hover {
+  background-color: var(--color-hover-dark);
+}
+
 @media screen and (width < 1000px) {
   .drawer-button {
     display: inline-block;

@@ -8,6 +8,7 @@ import {
 } from "../utils/auth";
 import NewPage from "../pages/new/new-page";
 import FavoritePage from "../pages/favorite/favorite-page";
+import NotFoundPage from "../pages/not-found/not-found-page";
 
 const routes = {
   "/login": () => checkUnauthenticatedRouteOnly(new LoginPage()),
@@ -16,6 +17,7 @@ const routes = {
   "/new": () => checkAuthenticatedRoute(new NewPage()),
   "/stories/:id": () => checkAuthenticatedRoute(new StoryDetailPage()),
   "/favorite": () => checkAuthenticatedRoute(new FavoritePage()),
+  "*": () => new NotFoundPage(),
 };
 
 export default routes;

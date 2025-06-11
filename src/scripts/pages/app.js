@@ -117,7 +117,7 @@ class App {
 
   async renderPage() {
     const url = getActiveRoute();
-    const route = routes[url];
+    const route = routes[url] || routes["*"];
 
     let page;
     try {
